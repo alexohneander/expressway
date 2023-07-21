@@ -1,5 +1,5 @@
-use actix_web::{web, App, HttpServer};
 use actix_web::middleware::Logger;
+use actix_web::{web, App, HttpServer};
 use env_logger::Env;
 use log::info;
 
@@ -19,7 +19,10 @@ async fn main() -> std::io::Result<()> {
     let configuration_loader = ConfigurationLoader {};
     let config = configuration_loader.load("config.json").unwrap();
 
-    info!("Starting server at: {}", &config.global_configuration.base_url);
+    info!(
+        "Starting server at: {}",
+        &config.global_configuration.base_url
+    );
 
     HttpServer::new(|| {
         App::new()
@@ -47,7 +50,7 @@ fn configure_routes(cfg: &mut web::ServiceConfig) {
             }
         }
     }
-    
-    //add it to the server  
+
+    //add it to the server
     cfg.service(scopes);
 }

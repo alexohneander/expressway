@@ -1,16 +1,14 @@
-use actix_web::{web, App, HttpResponse, HttpServer, Responder};
+use actix_web::{web, App, HttpServer};
 use actix_web::middleware::Logger;
 use env_logger::Env;
 use log::info;
 
 use crate::configuration::configuration_loader::ConfigurationLoader;
+use crate::handlers::proxy;
 
 mod configuration;
+mod handlers;
 mod types;
-
-async fn manual_hello() -> impl Responder {
-    HttpResponse::Ok().body("Hey there!")
-}
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -37,14 +35,11 @@ fn configure_routes(cfg: &mut web::ServiceConfig) {
     let configuration_loader = ConfigurationLoader {};
     let config = configuration_loader.load("config.json").unwrap();
 
-
-    println!("Configuring routes: {:#?}", config.routes);
-
     let mut scopes = actix_web::Scope::new("");
 
     for _route in config.routes {
         //define your methods here
-        scopes = scopes.route(&_route.upstream_path_template, web::get().to(manual_hello));
+        scopes = scopes.route(&_route.upstream_path_template, web::get().to(proxy::hello));
     }
     
     //add it to the server  

@@ -1,6 +1,6 @@
 pub mod authentication;
-pub mod middlewares;
-pub mod interfaces;
 pub mod configuration;
-pub mod types;
 pub mod handlers;
+pub mod interfaces;
+pub mod middlewares;
+pub mod types;

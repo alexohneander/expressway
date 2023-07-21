@@ -37,9 +37,15 @@ fn configure_routes(cfg: &mut web::ServiceConfig) {
 
     let mut scopes = actix_web::Scope::new("");
 
-    for _route in config.routes {
+    for route in config.routes {
         //define your methods here
-        scopes = scopes.route(&_route.upstream_path_template, web::get().to(proxy::hello));
+        for method in route.upstream_http_methods {
+            if method == "get" {
+                scopes = scopes.route(&route.upstream_path_template, web::get().to(proxy::hello));
+            } else if method == "post" {
+                scopes = scopes.route(&route.upstream_path_template, web::post().to(proxy::hello));
+            }
+        }
     }
     
     //add it to the server  

@@ -1,6 +1,6 @@
 {
     "globalConfiguration": {
-        "baseUrl": "https://localhost:4000"
+        "baseUrl": "localhost:4000"
     },
     "routes": [
         {

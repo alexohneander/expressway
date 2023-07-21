@@ -4,16 +4,28 @@
     },
     "routes": [
         {
-        "downstreamPathTemplate": "/todos/{id}",
-        "downstreamScheme": "https",
-        "downstreamHostAndPorts": [
-            {
-                "host": "jsonplaceholder.typicode.com",
-                "port": 443
-            }
-        ],
-        "upstreamPathTemplate": "/todos/{id}",
-        "upstreamHttpMethods": [ "Get" ]
+            "downstreamPathTemplate": "/todos/{id}",
+            "downstreamScheme": "https",
+            "downstreamHostAndPorts": [
+                {
+                    "host": "jsonplaceholder.typicode.com",
+                    "port": 443
+                }
+            ],
+            "upstreamPathTemplate": "/todos/{id}",
+            "upstreamHttpMethods": [ "Get" ]
+        },
+        {
+            "downstreamPathTemplate": "/",
+            "downstreamScheme": "https",
+            "downstreamHostAndPorts": [
+                {
+                    "host": "jsonplaceholder.typicode.com",
+                    "port": 443
+                }
+            ],
+            "upstreamPathTemplate": "/",
+            "upstreamHttpMethods": [ "Get" ]
         }
     ]
 }

@@ -19,16 +19,34 @@ async fn main() -> std::io::Result<()> {
 
     // Load configuration
     let configuration_loader = ConfigurationLoader {};
-    let config= configuration_loader.load("config.json").unwrap();
+    let config = configuration_loader.load("config.json").unwrap();
 
     info!("Starting server at: {}", &config.global_configuration.base_url);
 
     HttpServer::new(|| {
         App::new()
             .wrap(Logger::default())
-            .route("/", web::get().to(manual_hello))
+            .configure(configure_routes)
     })
-    .bind(config.global_configuration.base_url)?
+    .bind(&config.global_configuration.base_url)?
     .run()
     .await
+}
+
+fn configure_routes(cfg: &mut web::ServiceConfig) {
+    let configuration_loader = ConfigurationLoader {};
+    let config = configuration_loader.load("config.json").unwrap();
+
+
+    println!("Configuring routes: {:#?}", config.routes);
+
+    let mut scopes = actix_web::Scope::new("");
+
+    for _route in config.routes {
+        //define your methods here
+        scopes = scopes.route(&_route.upstream_path_template, web::get().to(manual_hello));
+    }
+    
+    //add it to the server  
+    cfg.service(scopes);
 }

@@ -3,3 +3,4 @@ pub mod middlewares;
 pub mod interfaces;
 pub mod configuration;
 pub mod types;
+pub mod handlers;

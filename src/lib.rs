@@ -4,3 +4,4 @@ pub mod handlers;
 pub mod interfaces;
 pub mod middlewares;
 pub mod types;
+pub mod services;

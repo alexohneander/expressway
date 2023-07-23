@@ -12,6 +12,7 @@ use crate::types::config::Config;
 mod configuration;
 mod handlers;
 mod types;
+mod services;
 
 // Initialize global configuration
 lazy_static::lazy_static! {

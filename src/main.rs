@@ -45,7 +45,6 @@ async fn main() -> std::io::Result<()> {
     .await
 }
 
-
 /// ### Configure Routes dynamically with the config
 fn configure_routes(cfg: &mut web::ServiceConfig) {
     let mut scopes = actix_web::Scope::new("");

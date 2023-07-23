@@ -17,7 +17,7 @@ pub async fn proxy(data: web::Data<AppStateWithConfig>) -> impl Responder {
     let config = data.config.lock().unwrap();
     let routes = &config.routes;
 
-    reverse_proxy::request_downstream(&routes[0]);
+    let resp = reverse_proxy::request_downstream(&routes[0]).await;
 
     HttpResponse::Ok().body("Hey there!")
 }

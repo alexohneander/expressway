@@ -1,5 +1,7 @@
 # Expressway
 
+[![Rust](https://github.com/alexohneander/expressway/actions/workflows/rust.yml/badge.svg)](https://github.com/alexohneander/expressway/actions/workflows/rust.yml)
+
 Expressway is an innovative project developed to streamline and simplify the integration of various microservices within our company. By providing a centralized platform for handling authentication and authorization, this gateway aims to enhance security, improve communication, and foster seamless interoperability between different microservices. Leveraging the power and performance of Rust, the API Gateway ensures efficient data flow while maintaining robust security measures.
 
 ### Goals

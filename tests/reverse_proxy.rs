@@ -16,7 +16,7 @@ mod tests {
             upstream_http_methods: vec!["get".to_string()],
         };
 
-        let resp = request_downstream(&route);
+        let resp = request_downstream(&route, "/test");
 
         // Add more assertions here if needed
     }

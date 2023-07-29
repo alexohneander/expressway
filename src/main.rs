@@ -6,6 +6,7 @@ use env_logger::Env;
 use log::info;
 
 use crate::configuration::configuration_loader;
+use crate::handlers::health;
 use crate::handlers::proxy::{self, AppStateWithConfig};
 use crate::types::config::Config;
 
@@ -38,7 +39,14 @@ async fn main() -> std::io::Result<()> {
     HttpServer::new(move || {
         App::new()
             .app_data(config_data.clone())
+            
+            // enable logger
             .wrap(Logger::default())
+
+            // Add System routes
+            .service(web::resource("/healthz").to(health::healthz))
+
+            // Register routes dynamically
             .configure(configure_routes)
     })
     .bind(&CONFIG.global_configuration.base_url)?

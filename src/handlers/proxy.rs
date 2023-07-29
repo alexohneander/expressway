@@ -18,7 +18,7 @@ pub async fn proxy(data: web::Data<AppStateWithConfig>, req: HttpRequest) -> imp
     let routes = &config.routes;
 
     // Match Route based on upstream_path_template
-    let matched_route = match_route(&routes, &req);
+    let matched_route = find_matching_route(&routes, &req);
 
     let request_path = req.path();
     let resp = reverse_proxy::request_downstream(&matched_route, &request_path).await.unwrap();
@@ -27,7 +27,7 @@ pub async fn proxy(data: web::Data<AppStateWithConfig>, req: HttpRequest) -> imp
 }
 
 
-fn match_route(routes: &Vec<Route>, req: &HttpRequest) -> Route {
+fn find_matching_route(routes: &Vec<Route>, req: &HttpRequest) -> Route {
     
     for route in routes {
         let hast_placeholder = has_route_placeholder(&route);

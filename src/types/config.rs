@@ -11,6 +11,15 @@ pub struct Config {
 #[serde(rename_all = "camelCase")]
 pub struct GlobalConfiguration {
     pub base_url: String,
+    pub lets_encrypt: LetsEncrypt,
+}
+
+#[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct LetsEncrypt {
+    pub email: String,
+    pub accept_terms: bool,
+    pub activate: bool,
 }
 
 #[derive(Default, Debug, Clone, PartialEq, Serialize, Deserialize)]

@@ -1,6 +1,11 @@
 {
     "globalConfiguration": {
-        "baseUrl": "localhost:4000"
+        "baseUrl": "localhost:4000",
+        "letsEncrypt": {
+            "email": "moin@wellnitz-alex.de",
+            "acceptTerms": true,
+            "activate": true
+        }
     },
     "routes": [
         {

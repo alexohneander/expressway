@@ -25,7 +25,7 @@
             "downstreamScheme": "https",
             "downstreamHostAndPorts": [
                 {
-                    "host": "jsonplaceholder.typicode.com",
+                    "host": "alexohneander.de",
                     "port": 443
                 }
             ],
